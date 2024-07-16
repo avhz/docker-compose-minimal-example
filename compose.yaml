@@ -1,0 +1,13 @@
+services:
+  app_1:
+    build: ./app_1
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./app_1:/app
+  app_2:
+    build: ./app_2
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./app_2:/app
