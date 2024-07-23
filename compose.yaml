@@ -1,13 +1,21 @@
-services:
-  app_1:
-    build: ./app_1
+services:    
+  dash_server:
+    build: .
+    restart: always
     ports:
-      - "8001:8001"
+      - "1995:1995"
     volumes:
-      - ./app_1:/app
-  app_2:
-    build: ./app_2
-    ports:
-      - "8002:8002"
-    volumes:
-      - ./app_2:/app
+      - ./:./
+    command: ["gunicorn", "server:server", "--reload", "--bind", "0.0.0.0:1995"]
+  # app_1:
+  #   build: ./app_1
+  #   ports:
+  #     - "8001:8001"
+  #   volumes:
+  #     - ./app_1:/app
+  # app_2:
+  #   build: ./app_2
+  #   ports:
+  #     - "8002:8002"
+  #   volumes:
+  #     - ./app_2:/app
